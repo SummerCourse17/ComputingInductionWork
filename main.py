@@ -1,4 +1,37 @@
-#Hour 1: completed up to step 4
+#Hour 2: completed all steps
+def generatePassword():
+    import random
+    import secrets
+    num = random.randint(8, 12)
+    letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+    other = [33, 36, 37, 94, 38, 42, 40, 41, 45, 95, 61, 43]
+
+    score = 0
+
+    while score < 35:
+        password = []
+
+        for i in range(0, num):
+            what = random.randint(1, 4)
+
+            if what == 1:
+                val = secrets.choice(letters)
+            elif what == 2:
+                val = secrets.choice(letters).lower()
+            elif what == 3:
+                val = chr(secrets.choice(other))
+            elif what == 4:
+                val = random.randint(0, 9)
+
+            password.append(str(val))
+
+        password = "".join(password)
+        score = checkPassword(password)
+
+    print("Your password is: " + password)
+    print("It scored: " + str(score))    
+
+    
 def checkPassword(password=""):
     if password == "":
         password = input("Enter Password: ")
@@ -106,3 +139,11 @@ while True:
             print("Strong")
         else:
             print("Very Strong")
+        print("Score: " + str(val))
+        print("To make your account even more secure, why not use our 2FA TOPT system!")
+    elif run == "2":
+        generatePassword()
+    elif run == "3":
+        break
+
+    print("\n")

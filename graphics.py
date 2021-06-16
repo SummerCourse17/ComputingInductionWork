@@ -1,4 +1,4 @@
-#Seperate copy of main for Graphics solution to use.
+#Graphics File
 #Hour 2: Started Extension
 from tkinter import *
 import tkinter as tk

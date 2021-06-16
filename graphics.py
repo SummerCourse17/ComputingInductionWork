@@ -1,27 +1,43 @@
 #Graphics File
-#Hour 2: Started Extension
+#Hour 3: Finished Extension
 from tkinter import *
 import tkinter as tk
-#from main import *
+from main_copy import checkPassword
+from main_copy import generatePassword
+
+runPC = 1
 
 def runA():
+    
     def runD():
+        global runPC
+        
         x1 = entry.get()
-        #returned = checkPassword(x1)
-        returned = "Hi"
+        returned = "Input #" + str(runPC) + ": "
+        if x1 == "":
+            returned = returned + "ERR - MUST ENTER PASSWORD"
+        else:
+            returnedA = "Strength - " + str(checkPassword(x1))
+            if returnedA == "None":
+                returned = returned + "ERR - UNEXPECTED INPUT. Refer to terminal for more details."
+            else:
+                returned = returned + returnedA
+
+        runPC += 1
+        
         result = Label(rootA, text=returned)
         result.pack()
     
     rootA = tk.Tk()
     rootA.title("Check Password")
 
-    canvasA = Canvas(rootA, width=400, height=400)
-    canvasA.pack()
+    canvas = Canvas(rootA, width=500, height=200, bg="lightblue")
+    canvas.pack(expand=YES, fill=BOTH)
 
     #iconA = PhotoImage(file="bc-brands-small.png")
     #rootA.iconphoto(False, iconA)
 
-    entry = Entry(rootA)
+    entry = Entry(rootA, width=50)
     entry.pack()
 
     go = Button(rootA, text="Check Password", compound=LEFT, command=runD)
@@ -29,8 +45,37 @@ def runA():
 
     back = Button(rootA, text="Back", command=rootA.destroy)
     back.pack()
+
+    a = Label(rootA, text="\nCoded by Ben C. Copyright (C) 2021. All rights reserved", pady=20, font=("Myriad Pro", 9, "italic"))
+    a.pack()
 def runB():
-    print("Hi")
+    def runE():
+        returnedA, returnedB = generatePassword()
+        
+        result = Label(rootB, text=returnedA)
+        result.pack()
+
+        result = Label(rootB, text=returnedB)
+        result.pack()
+        
+    rootB = tk.Tk()
+    rootB.title("Generate Password")
+
+    canvas = Canvas(rootB, width=500, height=200, bg="lightblue")
+    canvas.pack(expand=YES, fill=BOTH)
+
+    #iconA = PhotoImage(file="bc-brands-small.png")
+    #rootA.iconphoto(False, iconA)
+
+    go = Button(rootB, text="Generate", compound=LEFT, command=runE)
+    go.pack()
+
+    back = Button(rootB, text="Back", command=rootB.destroy)
+    back.pack()
+
+    a = Label(rootB, text="\nCoded by Ben C. Copyright (C) 2021. All rights reserved", pady=20, font=("Myriad Pro", 9, "italic"))
+    a.pack()
+    
 def runC():
     root.destroy()
 
